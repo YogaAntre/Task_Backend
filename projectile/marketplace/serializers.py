@@ -1,24 +1,26 @@
 from rest_framework import serializers
-from .models import (Car, CarImage)
+from .models import (Texts, Image)
 
-class CarBasicSerializer(serializers.ModelSerializer):
+class FileBasicSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Car
+        model = Texts
         fields = "__all__"
 
 class CarSingleImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CarImage
+        model = Image
         fields = ['image']
         
-class CarDetailsSerializer(serializers.ModelSerializer):
-    carimage_set=CarSingleImageSerializer(many=True)
+class FileDetailsSerializer(serializers.ModelSerializer):
+    image_set=CarSingleImageSerializer(many=True)
     class Meta:
-        model = Car
-        fields = ['name','carimage_set']
+        model = Texts
+        fields = ['id','instruction','image_set',"ref_no"]
 
-class CarImageSerializer(serializers.ModelSerializer):
+class FileImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CarImage
+        model = Image
         fields = "__all__"
+        
+
         
